@@ -137,11 +137,11 @@ public class game {
         if(table[y][x] == 0) return true;
         else return false;
     }
-  public static void main(String[] args) throws IOException {
+    private static void playGame(int size, int n) throws IOException
+    {
      BufferedReader key = new BufferedReader(new InputStreamReader(System.in)); 
-    int x = 5; // szerokosc
-    int y = 5; // wysokosc
-    int n = 4;
+    int x = size; // szerokosc
+    int y = size; // wysokosc
     int board[][] = generateTable(x, y);
     System.out.println("Witamy w grze Kolko i Krzyzyk multiplayer");
     printTable(board);
@@ -214,5 +214,23 @@ public class game {
             break;
         } 
     }
-  }
+  }   
+  public static void main(String[] args) throws IOException 
+    {
+        BufferedReader key = new BufferedReader(new InputStreamReader(System.in)); 
+        System.out.println("Witaj w Kolko i Krzyzyk Multiplayer");
+        while(true)
+        {
+        System.out.println("Chcesz zobaczyc statystyki(stat), rozpoczac nowa gre(game), czy moze zakonczyc(end)");
+        String s = key.readLine();
+        //if(s == "stat") statistcs();
+        if("game".equals(s))
+        {
+            System.out.println("Podaj rozmiar planszy:");
+            int si = Integer.parseInt(key.readLine());
+            playGame(si,4);
+        }
+        else if("end".equals(s)) break;
+        }
+    }
 }
