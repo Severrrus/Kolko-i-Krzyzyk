@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-/**
+/**TODO - pozbyc sie staticow
  * @author Severus
  */
 import java.io.BufferedReader;
@@ -137,11 +137,32 @@ public class game {
         if(table[y][x] == 0) return true;
         else return false;
     }
+    private static int getPosX(String s)
+    {
+        String sx = s.substring(0,1);
+        int wx = new Integer(sx).intValue();
+        return wx;
+    }
+    private static int getPosY(String s)
+    {
+        String sy = s.substring(2,3);
+        int wy = new Integer(sy).intValue();
+        return wy;
+    }
+    private static boolean checkString(String s)
+    {
+        boolean lol = true;
+        for(int i = 0; i < s.length();i++)
+        {
+            String x = s.substring(i, i+1);
+            if(" ".equals(x))lol = false;
+        }
+        return lol;
+    }
     private static void playGame(int size, int n) throws IOException
     {
      BufferedReader key = new BufferedReader(new InputStreamReader(System.in)); 
-    int x = size; // szerokosc
-    int y = size; // wysokosc
+    int x, y = x = size; // szerokosc i wysokosc
     int board[][] = generateTable(x, y);
     System.out.println("Witamy w grze Kolko i Krzyzyk multiplayer");
     printTable(board);
@@ -157,12 +178,15 @@ public class game {
             int wx, wy;
             while(true)
             {
-                String s = key.readLine();
-                String sx = s.substring(0,1);
-                String sy = s.substring(2,3);
-                wx = new Integer(sx).intValue();
-                wy = new Integer(sy).intValue();
-                if(ifCan(board, wx, wy))
+                String s;
+                while(true)
+                {
+                    s = key.readLine();
+                    if(checkString(s)) break;
+                    else System.out.println("Podane wspolrzedne sa bledne. Sprobuj ponownie");
+                }
+                wx = getPosX(s); wy = getPosY(s);
+                if(ifCan(board,wx,wy))
                 {
                     insertX(board, wx, wy); break;
                 }
@@ -184,12 +208,15 @@ public class game {
             int wx, wy;
             while(true)
             {
-                String s = key.readLine();
-                String sx = s.substring(0,1);
-                String sy = s.substring(2,3);
-                wx = new Integer(sx).intValue();
-                wy = new Integer(sy).intValue();
-                if(ifCan(board, wx, wy))
+                String s;
+                while(true)
+                {
+                    s = key.readLine();
+                    if(checkString(s)) break;
+                    else System.out.println("Podane wspolrzedne sa bledne. Sprobuj ponownie");
+                }
+                wx = getPosX(s); wy = getPosY(s);
+                if(ifCan(board,wx,wy))
                 {
                     insertO(board, wx, wy); break;
                 }
