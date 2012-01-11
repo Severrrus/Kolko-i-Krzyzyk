@@ -24,9 +24,9 @@ public class game {
         {
             for(int j = 0; j < table[i].length; j++) 
             {
-                if(table[i][j] == 0)System.out.print("-" + " ");
-                else if(table[i][j] == 2)System.out.print("O" + " ");
-                else System.out.print("X" + " ");
+                if(table[i][j] == 0)System.out.print("-" + "  ");
+                else if(table[i][j] == 2)System.out.print("O" + "  ");
+                else System.out.print("X" + "  ");
             }
             System.out.println("\n");
         }
@@ -182,10 +182,15 @@ public class game {
                 while(true)
                 {
                     s = key.readLine();
-                    if(checkString(s)) break;
+                    if(checkString(s))
+                    {
+                        wx = getPosX(s);
+                        wy = getPosY(s);
+                        if(wx < x && wy < y) break;
+                        System.out.println("Podane wspolrzedne sa bledne");
+                    }
                     else System.out.println("Podane wspolrzedne sa bledne. Sprobuj ponownie");
                 }
-                wx = getPosX(s); wy = getPosY(s);
                 if(ifCan(board,wx,wy))
                 {
                     insertX(board, wx, wy); break;
@@ -212,10 +217,15 @@ public class game {
                 while(true)
                 {
                     s = key.readLine();
-                    if(checkString(s)) break;
+                    if(checkString(s))
+                    {
+                        wx = getPosX(s);
+                        wy = getPosY(s);
+                        if(wx < x && wy < y) break;
+                        System.out.println("Podane wspolrzedne sa bledne");
+                    }
                     else System.out.println("Podane wspolrzedne sa bledne. Sprobuj ponownie");
                 }
-                wx = getPosX(s); wy = getPosY(s);
                 if(ifCan(board,wx,wy))
                 {
                     insertO(board, wx, wy); break;
